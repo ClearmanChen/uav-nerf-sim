@@ -1,0 +1,21 @@
+<!-- 本launch为使用airsim进行仿真时的启动脚本 -->
+<launch>
+    
+    <!-- AirSim Wrapper -->
+    <include file="$(find airsim_ros_pkgs)/launch/airsim_node.launch">
+        <arg name="host" value="localhost" />
+    </include>
+
+    <!-- Uav Controller -->
+
+    <node pkg="uav_controller" type="uav_controller.py" name="uav_controller_node_1" output="screen">
+        <param name="drone_id" value="1" type="int"/>
+        <param name="if_planner_enabled" value="false" type="bool"/>
+    </node>
+
+
+    <node pkg="uav_controller" type="main_controller.py" name="main_controller" output="screen">
+        <param name="drone_id" value="2" type="int"/>
+    </node>
+
+</launch>
