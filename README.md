@@ -7,19 +7,20 @@
 ## 系统架构
 ![系统整体架构](pic/structure1.png)
 ## 环境准备
-1. 启动AirSim环境。AirSim是内嵌于UE环境的飞行器环境仿真插件。可以采用[二进制预编译包](https://microsoft.github.io/AirSim/use_precompiled/)来启动该环境，以地图`Block`为例。
+1. 配置Airsim。按照[AirSim ROS Package说明文档](https://microsoft.github.io/AirSim/airsim_ros_pkgs/)进行配置。
+2. 启动AirSim环境。AirSim是内嵌于UE环境的飞行器环境仿真插件。可以采用[二进制预编译包](https://microsoft.github.io/AirSim/use_precompiled/)来启动该环境，以地图`Block`为例。
 ```
 cd $PATH_TO_BIN$
 bash Blocks.sh
 ```
-2. 克隆uav-nerf-sim并编译
+3. 克隆uav-nerf-sim并编译
 ```
 git clone https://github.com/ClearmanChen/uav-nerf-sim.git
 cd uav-nerf-sim
 catkin_make
 ```
-3. 启动ROS软件包。
-ROS软件包包括 Airsim ROS Wrapper, Uav Controller, Uav Communication, 导航模块Ego planner等。这些模块被集成在`src/launch/airsim_no_px4.launch`中，可以简单地通过`roslaunch src/launch/airsim_no_px4.launch`来启动它们。
+4. 启动ROS软件包。
+ROS软件包包括 Airsim ROS Wrapper, Uav Controller, RACER等。
 
 - **ROS Wrapper** 可以将UE环境中无人机的各种参数、状态信息收集并封装为ROS话题，在ROS系统中发布，起到了信息映射作用。
 - **Uav Controller** 移动节点的控制包。负责接受外部指令并调用接口控制无人机行动。

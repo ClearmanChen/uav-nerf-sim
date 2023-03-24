@@ -1,21 +1,45 @@
 <!-- 本launch为使用airsim进行仿真时的启动脚本 -->
 <launch>
-    
+    <arg name="airsim_ip" default="183.172.160.87"/>
+    <arg name="map_size_x" value="35.0"/>
+    <arg name="map_size_y" value="35.0"/>
+    <arg name="map_size_z" value=" 3.5"/>
+    <arg name="drone_num" value="1" />
+
     <!-- AirSim Wrapper -->
-    <include file="$(find airsim_ros_pkgs)/launch/airsim_node.launch">
-        <arg name="host" value="localhost" />
+    <include file="airsim_node.launch">
+        <arg name="host" value="$(arg airsim_ip)" />
+        <arg name="world_frame_id" value="world_enu" />
     </include>
 
-    <!-- Uav Controller -->
-
-    <node pkg="uav_controller" type="uav_controller.py" name="uav_controller_node_1" output="screen">
+    <!-- <node pkg="uav_controller" type="uav_controller.py" name="uav_controller_node_1" output="screen">
         <param name="drone_id" value="1" type="int"/>
-        <param name="if_planner_enabled" value="false" type="bool"/>
+        <param name="cmd_topic" value="/planning/pos_cmd_1"/>
+        <param name="if_planner_enabled" value="true" type="bool"/>
+        <param name="airsim_ip" value="$(arg airsim_ip)"/>
     </node>
 
+    <node pkg ="odom_transform" name ="odom_transform_node_1" type ="odom_transform_node" output = "screen">    
+        <param name="drone_id" value="1" type="int"/>
+        <param name="odom_input" value="/airsim_node/uav1/odom_local_enu"/>
+        <param name="odom_output" value="/airsim_node/uav1/odom_world"/>
+    </node> -->
+    <include file="single_drone_exploration.xml">
+        <arg name="drone_id" value="1"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="drone_num" value="$(arg drone_num)"/>
+        <arg name="airsim_ip" value="$(arg airsim_ip)"/>
+   </include>
 
-    <node pkg="uav_controller" type="main_controller.py" name="main_controller" output="screen">
-        <param name="drone_id" value="2" type="int"/>
-    </node>
+    <!-- <include file="single_drone_exploration.xml">
+        <arg name="drone_id" value="2"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="drone_num" value="$(arg drone_num)"/>
+        <arg name="airsim_ip" value="$(arg airsim_ip)"/>
+   </include> -->
 
 </launch>
