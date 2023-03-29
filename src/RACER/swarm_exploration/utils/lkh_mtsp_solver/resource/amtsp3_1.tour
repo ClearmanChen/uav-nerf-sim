@@ -1,30 +1,37 @@
-NAME : pairopt.-193864.tour
-COMMENT : Length = -193864
-COMMENT : Found by LKH-3 [Keld Helsgaun] Fri Mar 24 14:47:47 2023
+NAME : pairopt.-190470.tour
+COMMENT : Length = -190470
+COMMENT : Found by LKH-3 [Keld Helsgaun] Wed Mar 29 10:04:18 2023
 TYPE : TOUR
-DIMENSION : 22
+DIMENSION : 29
 TOUR_SECTION
 1
-2
-9
-11
-8
-6
-7
-10
-22
 3
-12
-13
-14
 15
-16
-17
-18
-19
-20
 21
+28
+19
+11
+23
+25
+26
+27
+8
+7
+13
+9
+24
+6
 5
 4
+29
+2
+16
+17
+12
+10
+18
+14
+20
+22
 -1
 EOF

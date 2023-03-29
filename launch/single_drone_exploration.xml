@@ -6,8 +6,8 @@
     <arg name="map_size_z" default="3.5"/>
     <arg name="visualization" default="false"/>
     <arg name="odometry_topic" default="/airsim_node/uav$(arg drone_id)/odom_world"/>
-    <arg name="sensor_pose_topic" default="/airsim_node/uav$(arg drone_id)_depth_camera/"/> 
-    <arg name="depth_topic" default="/airsim_node/uav$(arg drone_id)_depth_camera/DepthPlanar"/>
+    <arg name="sensor_pose_topic" default="/airsim_node/uav$(arg drone_id)/uav$(arg drone_id)_depth_camera/pose"/> 
+    <arg name="depth_topic" default="/airsim_node/uav$(arg drone_id)/uav$(arg drone_id)_depth_camera/DepthPlanar"/>
     <arg name="cloud_topic" default="/airsim_node/uav$(arg drone_id)/lidar/Lidar2" />
     <arg name="cx" default="324.0879821777344"/>
     <arg name="cy" default="239.10362243652344"/>
@@ -56,7 +56,7 @@
     <remap from="/planning/replan" to="/planning/replan_$(arg drone_id)" />
     <remap from="/planning/new" to="/planning/new_$(arg drone_id)" />
     
-    <remap from="/position_cmd" to="planning/pos_cmd_$(arg drone_id)"/>
+    <remap from="/position_cmd" to="/planning/pos_cmd_$(arg drone_id)"/>
     <remap from="planning/position_cmd_vis" to="planning/position_cmd_vis_$(arg drone_id)" />
     <remap from="planning/travel_traj" to="planning/travel_traj_$(arg drone_id)" />
 
@@ -81,13 +81,10 @@
   <node pkg="uav_controller" type="uav_controller.py" name="uav_controller_node_$(arg drone_id)" output="screen">
       <param name="drone_id" value="$(arg drone_id)" type="int"/>
       <param name="cmd_topic" value="/planning/pos_cmd_$(arg drone_id)"/>
-      <param name="if_planner_enabled" value="true" type="bool"/>
       <param name="airsim_ip" value="$(arg airsim_ip)"/>
   </node>
 
   <node pkg ="odom_transform" name ="odom_transform_node_$(arg drone_id)" type ="odom_transform_node" output = "screen">    
-        <param name="odom_input" value="/airsim_node/uav$(arg drone_id)/odom_local_enu"/>
-        <param name="odom_output" value="/airsim_node/uav$(arg drone_id)/odom_world"/>
         <param name="drone_id" value="$(arg drone_id)"/>
   </node>
 

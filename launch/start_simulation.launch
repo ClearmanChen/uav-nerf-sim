@@ -1,13 +1,14 @@
 <!-- 本launch为使用airsim进行仿真时的启动脚本 -->
 <launch>
-    <arg name="airsim_ip" default="183.172.160.87"/>
-    <arg name="map_size_x" value="35.0"/>
-    <arg name="map_size_y" value="35.0"/>
-    <arg name="map_size_z" value=" 3.5"/>
-    <arg name="drone_num" value="1" />
+    <arg name="airsim_ip" default="183.172.181.71"/>
+    <arg name="map_size_x" value="55.0"/>
+    <arg name="map_size_y" value="55.0"/>
+    <arg name="map_size_z" value=" 7.5"/>
+    <arg name="drone_num" value="2" />
 
     <!-- AirSim Wrapper -->
     <include file="airsim_node.launch">
+        <arg name="output" default="screen"/>
         <arg name="host" value="$(arg airsim_ip)" />
         <arg name="world_frame_id" value="world_enu" />
     </include>
@@ -33,13 +34,19 @@
         <arg name="airsim_ip" value="$(arg airsim_ip)"/>
    </include>
 
-    <!-- <include file="single_drone_exploration.xml">
+    <include file="single_drone_exploration.xml">
         <arg name="drone_id" value="2"/>
         <arg name="map_size_x" value="$(arg map_size_x)"/>
         <arg name="map_size_y" value="$(arg map_size_y)"/>
         <arg name="map_size_z" value="$(arg map_size_z)"/>
         <arg name="drone_num" value="$(arg drone_num)"/>
         <arg name="airsim_ip" value="$(arg airsim_ip)"/>
-   </include> -->
+   </include>
+
+   <include file="$(find foxglove_bridge)/launch/foxglove_bridge.launch">
+        <arg name="port" value="8765"/>
+   </include>
+   
+   <node pkg="tf" type="static_transform_publisher" name="world_tf_publisher" args="0 0 0 0 0 0 world_enu world 100" output="screen"/>
 
 </launch>

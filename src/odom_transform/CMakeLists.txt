@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   nav_msgs
+  geometry_msgs
   tf
 )
 
@@ -27,7 +28,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
-  CATKIN_DEPENDS roscpp std_msgs nav_msgs tf
+  CATKIN_DEPENDS roscpp std_msgs nav_msgs tf geometry_msgs
 # DEPENDS system_lib
 )
 
