@@ -4,95 +4,8 @@
 	"SimMode": "Multirotor",
 	"ClockType": "SteppableClock",
 	"Vehicles": {
-		"uav0": {
-			"VehicleType": "SimpleFlight",
-			"ControlPortLocal": 14540,
-			"ControlPortRemote": 14580,
-			"LocalHostIp": "127.0.0.1",
-			"ControlIp": "127.0.0.1",
-			"Sensors": {
-				"Imu": {
-					"SensorType": 2,
-					"Enabled": true,
-					"AngularRandomWalk": 0.3,
-					"GyroBiasStabilityTau": 500,
-					"GyroBiasStability": 4.6,
-					"VelocityRandomWalk": 0.24,
-					"AccelBiasStabilityTau": 800,
-					"AccelBiasStability": 36
-				},
-				"Lidar2": {
-					"SensorType": 6,
-					"Enabled": true,
-					"NumberOfChannels": 16,
-					"RotationsPerSecond": 10,
-					"PointsPerSecond": 10000,
-					"X": 0,
-					"Y": 0,
-					"Z": -1,
-					"Roll": 0,
-					"Pitch": 0,
-					"Yaw": 0,
-					"VerticalFOVUpper": 5,
-					"VerticalFOVLower": -5,
-					"HorizontalFOVStart": -180,
-					"HorizontalFOVEnd": 180,
-					"DrawDebugPoints": true,
-					"DataFrame": "SensorLocalFrame"
-				}
-			},
-			"Cameras": {
-				"uav0_depth_camera": {
-					"CaptureSettings": [
-						{
-							"PublishToRos": 1,
-							"ImageType": 1,
-							"Width": 640,
-							"Height": 480,
-							"FOV_Degrees": 27,
-							"DepthOfFieldFstop": 2.8,
-							"DepthOfFieldFocalDistance": 200.0,
-							"DepthOfFieldFocalRegion": 200.0,
-							"TargetGamma": 1.5
-						}
-					],
-					"X": 0.50,
-					"Y": 0,
-					"Z": 0.10,
-					"Pitch": 0,
-					"Roll": 0,
-					"Yaw": 0
-				},
-				"uav0_scene_camera": {
-					"CaptureSettings": [
-						{
-							"PublishToRos": 1,
-							"ImageType": 0,
-							"Width": 640,
-							"Height": 480
-						}
-					],
-					"X": 0.50,
-					"Y": 0,
-					"Z": 0.10,
-					"Pitch": 0,
-					"Roll": 0,
-					"Yaw": 0
-				}
-			},
-			"X": 0,
-			"Y": 0,
-			"Z": 0,
-			"Pitch": 0,
-			"Roll": 0,
-			"Yaw": 0
-		},
 		"uav1": {
 			"VehicleType": "SimpleFlight",
-			"ControlPortLocal": 14640,
-			"ControlPortRemote": 14680,
-			"LocalHostIp": "127.0.0.1",
-			"ControlIp": "127.0.0.1",
 			"Sensors": {
 				"Imu": {
 					"SensorType": 2,
@@ -106,7 +19,7 @@
 				},
 				"Lidar2": {
 					"SensorType": 6,
-					"Enabled": true,
+					"Enabled": false,
 					"NumberOfChannels": 16,
 					"RotationsPerSecond": 10,
 					"PointsPerSecond": 10000,
@@ -152,7 +65,88 @@
 							"PublishToRos": 1,
 							"ImageType": 0,
 							"Width": 640,
-							"Height": 480
+							"Height": 480,
+							"FOV_Degrees": 27
+						}
+					],
+					"X": 0.50,
+					"Y": 0,
+					"Z": 0.10,
+					"Pitch": 0,
+					"Roll": 0,
+					"Yaw": 0
+				}
+			},
+			"X": 0,
+			"Y": 0,
+			"Z": 0,
+			"Pitch": 0,
+			"Roll": 0,
+			"Yaw": 0
+		},
+		"uav2": {
+			"VehicleType": "SimpleFlight",
+			"Sensors": {
+				"Imu": {
+					"SensorType": 2,
+					"Enabled": true,
+					"AngularRandomWalk": 0.3,
+					"GyroBiasStabilityTau": 500,
+					"GyroBiasStability": 4.6,
+					"VelocityRandomWalk": 0.24,
+					"AccelBiasStabilityTau": 800,
+					"AccelBiasStability": 36
+				},
+				"Lidar2": {
+					"SensorType": 6,
+					"Enabled": false,
+					"NumberOfChannels": 16,
+					"RotationsPerSecond": 10,
+					"PointsPerSecond": 10000,
+					"X": 0,
+					"Y": 0,
+					"Z": -1,
+					"Roll": 0,
+					"Pitch": 0,
+					"Yaw": 0,
+					"VerticalFOVUpper": 5,
+					"VerticalFOVLower": -5,
+					"HorizontalFOVStart": -180,
+					"HorizontalFOVEnd": 180,
+					"DrawDebugPoints": true,
+					"DataFrame": "SensorLocalFrame"
+				}
+			},
+			"Cameras": {
+				"uav2_depth_camera": {
+					"CaptureSettings": [
+						{
+							"PublishToRos": 1,
+							"ImageType": 1,
+							"Width": 640,
+							"Height": 480,
+							"FOV_Degrees": 27,
+							"DepthOfFieldFstop": 2.8,
+							"DepthOfFieldFocalDistance": 200.0,
+							"DepthOfFieldFocalRegion": 200.0,
+							"TargetGamma": 1.5
+						}
+					],
+					"X": 0.50,
+					"Y": 0,
+					"Z": 0.10,
+					"Pitch": 0,
+					"Roll": 0,
+					"Yaw": 0
+				},
+				"uav2_scene_camera": {
+					"CaptureSettings": [
+						{
+							"PublishToRos": 1,
+							"ImageType": 0,
+							"Width": 640,
+							"Height": 480,
+							"FOV_Degrees": 27
 						}
 					],
 					"X": 0.50,
@@ -174,15 +168,15 @@
 	"SubWindows": [
 		{
 			"WindowID": 0,
-			"ImageType": 1,
-			"CameraName": "uav0_depth_camera",
-			"Visible": false
+			"ImageType": 0,
+			"CameraName": "uav1_scene_camera",
+			"Visible": true
 		},
 		{
 			"WindowID": 1,
-			"ImageType": 1,
-			"CameraName": "uav1_depth_camera",
-			"Visible": false
+			"ImageType": 0,
+			"CameraName": "uav2_scene_camera",
+			"Visible": true
 		}
 	]
 }

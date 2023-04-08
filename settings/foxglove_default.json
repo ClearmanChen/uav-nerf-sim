@@ -1,0 +1,351 @@
+{
+  "configById": {
+    "3D!18i6zy7": {
+      "layers": {
+        "845139cb-26bc-40b3-8161-8ab60af4baf5": {
+          "visible": true,
+          "frameLocked": true,
+          "label": "Grid",
+          "instanceId": "845139cb-26bc-40b3-8161-8ab60af4baf5",
+          "layerId": "foxglove.Grid",
+          "divisions": 100,
+          "lineWidth": 1,
+          "color": "#248eff",
+          "position": [
+            0,
+            0,
+            -0.67
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "order": 1,
+          "frameId": "world",
+          "size": 100
+        }
+      },
+      "cameraState": {
+        "perspective": true,
+        "distance": 23.327015599869387,
+        "phi": 81.87292684060266,
+        "thetaOffset": 11.260807685464231,
+        "targetOffset": [
+          5.661431447756061,
+          16.835331494254365,
+          -4.508576766509021e-16
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "targetOrientation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "fovy": 45,
+        "near": 0.5,
+        "far": 5000
+      },
+      "followMode": "follow-pose",
+      "followTf": "world",
+      "scene": {
+        "transforms": {
+          "enablePreloading": true
+        }
+      },
+      "transforms": {
+        "frame:uav1_depth_camera_body": {
+          "visible": false
+        },
+        "frame:uav1_depth_camera_optical": {
+          "visible": false
+        },
+        "frame:uav1/odom_local_enu": {
+          "visible": false
+        },
+        "frame:uav1_depth_camera_body/static": {
+          "visible": false
+        },
+        "frame:uav1_depth_camera_optical/static": {
+          "visible": false
+        },
+        "frame:uav1_scene_camera_body/static": {
+          "visible": false
+        },
+        "frame:uav1_scene_camera_optical/static": {
+          "visible": false
+        },
+        "frame:uav1": {
+          "visible": false
+        },
+        "frame:uav2_depth_camera_body": {
+          "visible": false
+        },
+        "frame:uav2_depth_camera_optical": {
+          "visible": false
+        },
+        "frame:uav2/odom_local_enu": {
+          "visible": false
+        },
+        "frame:uav2_depth_camera_body/static": {
+          "visible": false
+        },
+        "frame:uav2_scene_camera_body/static": {
+          "visible": false
+        },
+        "frame:uav2_scene_camera_optical/static": {
+          "visible": false
+        },
+        "frame:world": {
+          "visible": true
+        },
+        "frame:world_ned": {
+          "visible": false
+        },
+        "frame:world_enu": {
+          "visible": false
+        },
+        "frame:uav2_depth_camera_optical/static": {
+          "visible": false
+        },
+        "frame:uav2": {
+          "visible": false
+        }
+      },
+      "topics": {
+        "/sdf_map/occupancy_all_1": {
+          "visible": false,
+          "colorField": "x",
+          "colorMode": "colormap",
+          "colorMap": "turbo",
+          "explicitAlpha": 1,
+          "stixelsEnabled": false
+        },
+        "/sdf_map/occupancy_all_2": {
+          "visible": true,
+          "colorField": "x",
+          "colorMode": "colormap",
+          "colorMap": "turbo",
+          "stixelsEnabled": false,
+          "explicitAlpha": 1,
+          "pointSize": 5
+        },
+        "/planning_vis/viewpoints_1": {
+          "visible": false
+        },
+        "/planning_vis/trajectory_1": {
+          "visible": false
+        },
+        "/sdf_map/depth_cloud": {
+          "visible": false,
+          "colorField": "x",
+          "colorMode": "colormap",
+          "colorMap": "turbo"
+        },
+        "/multi_map_manager/marker_1": {
+          "visible": false
+        },
+        "/planning_vis/topo_path": {
+          "visible": false
+        },
+        "/planning/position_cmd_vis_1": {
+          "visible": true,
+          "namespaces": {
+            "current_pose": {
+              "visible": true
+            }
+          }
+        },
+        "/planning/position_cmd_vis_2": {
+          "visible": true
+        },
+        "/planning_vis/trajectory_2": {
+          "visible": false
+        },
+        "/odom_visualization_1/path": {
+          "visible": false
+        },
+        "/drone_pose_vis_1": {
+          "visible": true,
+          "namespaces": {
+            "mesh": {
+              "visible": true
+            }
+          }
+        },
+        "/drone_pose_vis_2": {
+          "visible": true,
+          "color": "#0000002e"
+        },
+        "/odom_visualization_2/trajectory": {
+          "visible": false
+        }
+      },
+      "publish": {
+        "type": "point",
+        "poseTopic": "/move_base_simple/goal",
+        "pointTopic": "/clicked_point",
+        "poseEstimateTopic": "/initialpose",
+        "poseEstimateXDeviation": 0.5,
+        "poseEstimateYDeviation": 0.5,
+        "poseEstimateThetaDeviation": 0.26179939
+      },
+      "foxglovePanelTitle": "Main View",
+      "imageMode": {}
+    },
+    "ImageViewPanel!3mnp456": {
+      "cameraTopic": "/airsim_node/uav2/uav2_depth_camera/DepthPlanar",
+      "enabledMarkerTopics": [],
+      "mode": "fit",
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "rotation": 0,
+      "synchronize": true,
+      "transformMarkers": false,
+      "zoom": 1,
+      "smooth": false,
+      "maxValue": 255
+    },
+    "ImageViewPanel!2emrvlh": {
+      "cameraTopic": "/airsim_node/uav2/uav2_scene_camera/Scene",
+      "enabledMarkerTopics": [],
+      "mode": "fit",
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "rotation": 0,
+      "synchronize": true,
+      "transformMarkers": false,
+      "zoom": 1,
+      "smooth": false,
+      "maxValue": 255
+    },
+    "ImageViewPanel!e6ulmt": {
+      "cameraTopic": "/airsim_node/uav1/uav1_depth_camera/DepthPlanar",
+      "enabledMarkerTopics": [],
+      "mode": "fit",
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "rotation": 0,
+      "synchronize": false,
+      "transformMarkers": false,
+      "zoom": 1
+    },
+    "ImageViewPanel!4cyeybn": {
+      "cameraTopic": "/airsim_node/uav1/uav1_scene_camera/Scene",
+      "enabledMarkerTopics": [],
+      "mode": "fit",
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "rotation": 0,
+      "synchronize": false,
+      "transformMarkers": false,
+      "zoom": 1
+    },
+    "StateTransitions!98c61a": {
+      "paths": [
+        {
+          "value": "/airsim_node/uav1/odom_world.pose.pose.position.x",
+          "timestampMethod": "receiveTime",
+          "label": "x"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/airsim_node/uav1/odom_world.pose.pose.position.y",
+          "enabled": true,
+          "label": "y"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/airsim_node/uav1/odom_world.pose.pose.position.z",
+          "enabled": true,
+          "label": "z"
+        }
+      ],
+      "isSynced": true,
+      "foxglovePanelTitle": "drone 1"
+    },
+    "StateTransitions!3bpsor9": {
+      "paths": [
+        {
+          "value": "/airsim_node/uav2/odom_world.pose.pose.position.x",
+          "timestampMethod": "receiveTime",
+          "label": "x"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/airsim_node/uav2/odom_world.pose.pose.position.y",
+          "enabled": true,
+          "label": "y"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/airsim_node/uav2/odom_world.pose.pose.position.z",
+          "enabled": true,
+          "label": "z"
+        }
+      ],
+      "isSynced": true,
+      "foxglovePanelTitle": "drone 2"
+    },
+    "Publish!ms4stn": {
+      "topicName": "/move_base_simple/goal",
+      "datatype": "geometry_msgs/PoseStamped",
+      "buttonText": "Start Mission",
+      "buttonTooltip": "",
+      "buttonColor": "#00A871",
+      "advancedView": false,
+      "value": "{\n  \"header\": {\n    \"seq\": 0,\n    \"stamp\": {\n      \"sec\": 0,\n      \"nsec\": 0\n    },\n    \"frame_id\": \"\"\n  },\n  \"pose\": {\n    \"position\": {\n      \"x\": 0,\n      \"y\": 0,\n      \"z\": 0\n    },\n    \"orientation\": {\n      \"x\": 0,\n      \"y\": 0,\n      \"z\": 0,\n      \"w\": 0\n    }\n  }\n}",
+      "foxglovePanelTitle": "Mission Mannager"
+    }
+  },
+  "globalVariables": {},
+  "userNodes": {},
+  "playbackConfig": {
+    "speed": 1
+  },
+  "layout": {
+    "first": "3D!18i6zy7",
+    "second": {
+      "first": {
+        "first": {
+          "first": "ImageViewPanel!3mnp456",
+          "second": "ImageViewPanel!2emrvlh",
+          "direction": "column"
+        },
+        "second": {
+          "first": "ImageViewPanel!e6ulmt",
+          "second": "ImageViewPanel!4cyeybn",
+          "direction": "column"
+        },
+        "direction": "row"
+      },
+      "second": {
+        "first": {
+          "first": "StateTransitions!98c61a",
+          "second": "StateTransitions!3bpsor9",
+          "direction": "row"
+        },
+        "second": "Publish!ms4stn",
+        "direction": "column",
+        "splitPercentage": 69.97635933806147
+      },
+      "direction": "column",
+      "splitPercentage": 38.30798479087453
+    },
+    "direction": "row",
+    "splitPercentage": 68.48582129481005
+  }
+}

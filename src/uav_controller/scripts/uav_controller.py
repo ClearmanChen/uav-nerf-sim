@@ -58,36 +58,49 @@ class UavController:
             int(rospy.get_param(f'/airsim_node/uav{uav_index}/init_z')))
 
         self.airsim_client.takeoffAsync(vehicle_name=self.vehicle_name).join()
-        self.airsim_client.moveToZAsync(-1.5, 1, vehicle_name=self.vehicle_name).join()
+        self.airsim_client.moveToZAsync(-1.8, 1, vehicle_name=self.vehicle_name).join()
+
+        self.traj_points = []
+        self.prev_point = Vector3r(0, 0, 1.8)
 
     def state_callback(self, data) -> None:
         self.state = data.data
 
+    def controll_by_position(self, data: PositionCommand) -> None:
+        data.position.x -= self.init_trans.x_val
+        data.position.y -= self.init_trans.y_val
+        data.position.z -= self.init_trans.z_val
+        if self.index == 1:
+            print(f'[{self.vehicle_name}] pos_real: {self.vehicle_pose.position.x_val: .3f}, \
+                {self.vehicle_pose.position.y_val: .3f}, {self.vehicle_pose.position.z_val: .3f}')
+            print(f'[{self.vehicle_name}] pos_cmd: {data.position.x: .3f}, {data.position.y: .3f}, {data.position.z: .3f}')
+        self.airsim_client.moveToPositionAsync(
+            x = data.position.y,
+            y = data.position.x,
+            z = -data.position.z,
+            velocity = 1,
+            vehicle_name = self.vehicle_name,
+            drivetrain = DrivetrainType.ForwardOnly,
+            yaw_mode = YawMode(
+                is_rate = False,
+                yaw_or_rate = data.yaw
+            )
+        )
+
     def planner_output_callback(self, data: PositionCommand):
         # Airsim api always works on NED coordinate system
-        self.airsim_client.enableApiControl(True, vehicle_name=self.vehicle_name)
+        current_point = Vector3r(
+            x_val = data.position.x,
+            y_val = data.position.y,
+            z_val = data.position.z
+        ) - self.init_trans
+        if current_point.distance_to(self.prev_point) >= 0.1:
+            self.log(self.vehicle_pose)
+            self.log(f'{self.prev_point} -> {current_point}')
+            self.controll_by_position(data)
+            self.prev_point = current_point
+        
 
-        # data.position.x -= self.init_trans.x_val
-        # data.position.y -= self.init_trans.y_val
-        # data.position.z -= self.init_trans.z_val
-        # if self.index == 1:
-        #     print(f'[{self.vehicle_name}] pos_real: {self.vehicle_pose.position.x_val: .3f}, \
-        #         {self.vehicle_pose.position.y_val: .3f}, {self.vehicle_pose.position.z_val: .3f}')
-        #     print(f'[{self.vehicle_name}] pos_cmd: {data.position.x: .3f}, {data.position.y: .3f}, {data.position.z: .3f}')
-        # self.airsim_client.moveToPositionAsync(
-        #     x = data.position.y,
-        #     y = data.position.x,
-        #     z = -data.position.z,
-        #     velocity = 1,
-        #     vehicle_name = self.vehicle_name,
-        #     drivetrain = DrivetrainType.ForwardOnly,
-        #     yaw_mode = YawMode(
-        #         is_rate = False,
-        #         yaw_or_rate = data.yaw
-        #     )
-        # ).join
-        # self.rate.sleep()
-    
     def vehicle_pose_callback(self, data: Odometry):
         self.vehicle_pose = Pose(
             position_val = Vector3r(
@@ -122,43 +135,8 @@ class UavController:
                 self.log('Drone landed sucessfully.')
             else:
                 self.log('Drone landed failed because another task is running.')
-
-    # def update_camera_pose(self) -> bool:
-    #     try:
-    #         self.depth_camera_pose = self.airsim_client.simGetCameraInfo(
-    #             camera_name = self.depth_camera_name,
-    #             vehicle_name = self.vehicle_name,
-    #             external = False
-    #         ).pose
-    #         self.scene_camera_pose = self.airsim_client.simGetCameraInfo(
-    #             camera_name = self.scene_camera_name,
-    #             vehicle_name = self.vehicle_name,
-    #             external = False
-    #         ).pose
-    #     except Exception as e:
-    #         self.log('ERROR occured while getting camera info.')
-    #         print(e)
-    #         self.depth_camera_pose = None
-    #         self.scene_camera_pose = None
-    #         return False
-    #     self.depth_camera_pose = self.ned2enu(self.depth_camera_pose)
-    #     self.depth_camera_pose.orientation = self.camera_axis_orientation * self.depth_camera_pose.orientation
-    #     self.depth_camera_pose.position += self.init_trans
-        
-    #     self.scene_camera_pose = self.ned2enu(self.scene_camera_pose)
-    #     self.scene_camera_pose = self.ned2enu(self.scene_camera_pose)
-    #     self.scene_camera_pose.orientation = self.camera_axis_orientation * self.scene_camera_pose.orientation
-    #     self.scene_camera_pose.position += self.init_trans
-    #     return True
-
-    # def pub_camera_pose(self) -> None:
-    #     self.update_camera_pose()
-    #     if self.depth_camera_pose != None:
-    #         self.depth_pose_pub.publish(self.generate_posestamp(self.depth_camera_pose, self.depth_pose_seq))
-    #         self.depth_pose_seq = (self.depth_pose_seq + 1) % 67108864
-    #     if self.scene_camera_pose != None:
-    #         self.scene_pose_pub.publish(self.generate_posestamp(self.scene_camera_pose, self.scene_pose_seq))
-    #         self.scene_pose_seq = (self.scene_pose_seq + 1) % 67108864
+        elif data.data == 'RESET':
+            self.airsim_client.reset()
 
     def generate_posestamp(self, pose:Pose, seq:int) -> PoseStamped:
         pose_stamped = PoseStamped()
@@ -176,7 +154,6 @@ class UavController:
         return pose_stamped
 
     def ned2enu(self, ned_pose:Pose) -> Pose:
-        
         t = ned_pose.position.y_val 
         ned_pose.position.y_val = ned_pose.position.x_val
         ned_pose.position.x_val = t
@@ -205,9 +182,5 @@ if __name__ == '__main__':
     )
     controller.log('Controller created.')
     
-    # rate = rospy.Rate(10)
-    # while not rospy.is_shutdown():
-    #     controller.pub_camera_pose()
-    #     rate.sleep()
     rospy.spin()
     controller.log('Controller shutdown.')

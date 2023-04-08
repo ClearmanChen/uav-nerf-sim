@@ -5,7 +5,7 @@
 ---
 
 ## 系统架构
-![系统整体架构](pic/structure1.png)
+![系统整体架构](resource/structure1.png)
 ## 环境准备
 1. 配置Airsim。按照[AirSim ROS Package说明文档](https://microsoft.github.io/AirSim/airsim_ros_pkgs/)进行配置。
 2. 启动AirSim环境。AirSim是内嵌于UE环境的飞行器环境仿真插件。可以采用[二进制预编译包](https://microsoft.github.io/AirSim/use_precompiled/)来启动该环境，以地图`Block`为例。

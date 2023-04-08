@@ -1,14 +1,19 @@
 <launch>
   <arg name="odometry_topic"/>
+  <arg name="drone_id"/>
+  <arg name="drone_num"/>
 
-  <node pkg="odom_visualization" name="odom_visualization" type="odom_visualization" output="screen">
+  <node pkg="odom_visualization" name="odom_visualization_$(arg drone_id)" type="odom_visualization" output="screen">
         <remap from="~odom" to="$(arg odometry_topic)"/>
+        <param name="drone_id" value="$(arg drone_id)"/>    
+        <param name="drone_num" value="$(arg drone_num)"/> 
+        <param name="mesh_resource" value="package://odom_visualization/meshes/drone.stl" /> 
         <param name="color/a" value="1.0"/>    
         <param name="color/r" value="0.0"/>        
         <param name="color/g" value="0.0"/>        
         <param name="color/b" value="1.0"/>       
         <param name="covariance_scale" value="100.0"/>       
-        <param name="robot_scale" value="1.0"/>
-  </node>
+        <param name="robot_scale" value="0.003"/>
+   </node>
 
 </launch>

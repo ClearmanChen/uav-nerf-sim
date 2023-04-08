@@ -1,6 +1,6 @@
 <!-- 本launch为使用airsim进行仿真时的启动脚本 -->
 <launch>
-    <arg name="airsim_ip" default="183.172.181.71"/>
+    <arg name="airsim_ip" default="183.172.162.19"/>
     <arg name="map_size_x" value="55.0"/>
     <arg name="map_size_y" value="55.0"/>
     <arg name="map_size_z" value=" 7.5"/>

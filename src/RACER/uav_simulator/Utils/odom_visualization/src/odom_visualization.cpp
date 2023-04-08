@@ -477,7 +477,7 @@ int main(int argc, char** argv) {
   n.param("color/a", color_a, 1.0);
   n.param("origin", origin, false);
   n.param("robot_scale", scale, 2.0);
-  n.param("frame_id", _frame_id, string("/world"));
+  n.param("frame_id", _frame_id, string("world"));
 
   n.param("cross_config", cross_config, false);
   n.param("tf45", tf45, false);
@@ -498,7 +498,7 @@ int main(int argc, char** argv) {
       n.advertise<visualization_msgs::Marker>("covariance_velocity", 100, true);
   trajPub = n.advertise<visualization_msgs::Marker>("trajectory", 100, true);
   sensorPub = n.advertise<visualization_msgs::Marker>("sensor", 100, true);
-  meshPub = n.advertise<visualization_msgs::Marker>("robot", 100, true);
+  meshPub = n.advertise<visualization_msgs::Marker>("/drone_pose_vis_" + std::to_string(drone_id_), 100, true);
   heightPub = n.advertise<sensor_msgs::Range>("height", 100, true);
   tf::TransformBroadcaster b;
   broadcaster = &b;

@@ -3,16 +3,16 @@
     <arg name="drone_num" default="1"/> <!-- to determine salesman number, etc -->
     <arg name="map_size_x" default="22"/>
     <arg name="map_size_y" default="22"/>
-    <arg name="map_size_z" default="3.5"/>
-    <arg name="visualization" default="false"/>
+    <arg name="map_size_z" default="4.5"/>
+    <arg name="visualization" default="true"/>
     <arg name="odometry_topic" default="/airsim_node/uav$(arg drone_id)/odom_world"/>
     <arg name="sensor_pose_topic" default="/airsim_node/uav$(arg drone_id)/uav$(arg drone_id)_depth_camera/pose"/> 
     <arg name="depth_topic" default="/airsim_node/uav$(arg drone_id)/uav$(arg drone_id)_depth_camera/DepthPlanar"/>
     <arg name="cloud_topic" default="/airsim_node/uav$(arg drone_id)/lidar/Lidar2" />
-    <arg name="cx" default="324.0879821777344"/>
-    <arg name="cy" default="239.10362243652344"/>
-    <arg name="fx" default="385.69793701171875"/>
-    <arg name="fy" default="385.69793701171875"/>
+    <arg name="cx" default="320"/>
+    <arg name="cy" default="240"/>
+    <arg name="fx" default="1332.895874"/>
+    <arg name="fy" default="1332.895874"/>
     <arg name="airsim_ip" default="127.0.0.1"/>
 
 
@@ -42,8 +42,8 @@
     <arg name="fy" value="$(arg fy)"/>
 
     <!-- maximum velocity and acceleration the drone will reach -->
-    <arg name="max_vel" value="1.5" />
-    <arg name="max_acc" value="1.0" />
+    <arg name="max_vel" value="1" />
+    <arg name="max_acc" value="0.8" />
     <!-- <arg name="max_vel" value="1.0" />
     <arg name="max_acc" value="0.8" /> -->
   </include>
@@ -75,6 +75,8 @@
   <!-- visualization -->
   <include file="visualization.xml" if="$(arg visualization)">
     <arg name="odometry_topic" value="$(arg odometry_topic)" />
+    <arg name="drone_id" value="$(arg drone_id)"/>
+    <arg name="drone_num" value="$(arg drone_num)"/>
   </include>
 
   <!-- Uav Controller -->
@@ -85,7 +87,7 @@
   </node>
 
   <node pkg ="odom_transform" name ="odom_transform_node_$(arg drone_id)" type ="odom_transform_node" output = "screen">    
-        <param name="drone_id" value="$(arg drone_id)"/>
+      <param name="drone_id" value="$(arg drone_id)"/>
   </node>
 
   <!-- lcm communication -->
