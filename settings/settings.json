@@ -59,6 +59,27 @@
 					"Roll": 0,
 					"Yaw": 0
 				},
+				"uav1_depth_camera_vis": {
+					"CaptureSettings": [
+						{
+							"PublishToRos": 1,
+							"ImageType": 3,
+							"Width": 640,
+							"Height": 480,
+							"FOV_Degrees": 27,
+							"DepthOfFieldFstop": 2.8,
+							"DepthOfFieldFocalDistance": 200.0,
+							"DepthOfFieldFocalRegion": 200.0,
+							"TargetGamma": 1.5
+						}
+					],
+					"X": 0.50,
+					"Y": 0,
+					"Z": 0.10,
+					"Pitch": 0,
+					"Roll": 0,
+					"Yaw": 0
+				},
 				"uav1_scene_camera": {
 					"CaptureSettings": [
 						{
@@ -123,6 +144,27 @@
 						{
 							"PublishToRos": 1,
 							"ImageType": 1,
+							"Width": 640,
+							"Height": 480,
+							"FOV_Degrees": 27,
+							"DepthOfFieldFstop": 2.8,
+							"DepthOfFieldFocalDistance": 200.0,
+							"DepthOfFieldFocalRegion": 200.0,
+							"TargetGamma": 1.5
+						}
+					],
+					"X": 0.50,
+					"Y": 0,
+					"Z": 0.10,
+					"Pitch": 0,
+					"Roll": 0,
+					"Yaw": 0
+				},
+				"uav2_depth_camera_vis": {
+					"CaptureSettings": [
+						{
+							"PublishToRos": 1,
+							"ImageType": 3,
 							"Width": 640,
 							"Height": 480,
 							"FOV_Degrees": 27,

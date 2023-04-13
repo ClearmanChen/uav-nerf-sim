@@ -28,13 +28,13 @@
       },
       "cameraState": {
         "perspective": true,
-        "distance": 23.327015599869387,
-        "phi": 81.87292684060266,
-        "thetaOffset": 11.260807685464231,
+        "distance": 18.999999999920444,
+        "phi": 67.2799007489127,
+        "thetaOffset": 11.049457365071046,
         "targetOffset": [
-          5.661431447756061,
-          16.835331494254365,
-          -4.508576766509021e-16
+          1.6086768687495967,
+          2.4790892042361006,
+          -5.1739989568488145e-16
         ],
         "target": [
           0,
@@ -199,7 +199,7 @@
       "imageMode": {}
     },
     "ImageViewPanel!3mnp456": {
-      "cameraTopic": "/airsim_node/uav2/uav2_depth_camera/DepthPlanar",
+      "cameraTopic": "/airsim_node/uav1/uav1_depth_camera_vis/DepthVis",
       "enabledMarkerTopics": [],
       "mode": "fit",
       "pan": {
@@ -229,7 +229,7 @@
       "maxValue": 255
     },
     "ImageViewPanel!e6ulmt": {
-      "cameraTopic": "/airsim_node/uav1/uav1_depth_camera/DepthPlanar",
+      "cameraTopic": "/airsim_node/uav1/uav1_depth_camera_vis/DepthVis",
       "enabledMarkerTopics": [],
       "mode": "fit",
       "pan": {
@@ -340,12 +340,12 @@
         },
         "second": "Publish!ms4stn",
         "direction": "column",
-        "splitPercentage": 69.97635933806147
+        "splitPercentage": 41.91063174114022
       },
       "direction": "column",
       "splitPercentage": 38.30798479087453
     },
     "direction": "row",
-    "splitPercentage": 68.48582129481005
+    "splitPercentage": 71.58908507223114
   }
 }

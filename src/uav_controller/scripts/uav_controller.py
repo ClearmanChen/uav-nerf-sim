@@ -39,6 +39,7 @@ class UavController:
         self.vehicle_name = f'uav{uav_index}'
         self.depth_camera_name = f'uav{uav_index}_depth_camera'
         self.scene_camera_name = f'uav{uav_index}_scene_camera'
+        self.depth_range_meter = 100
         self.depth_camera_pose = None
         self.scene_camera_pose = None
         self.vehicle_pose = None
@@ -47,6 +48,8 @@ class UavController:
 
         self.camera_axis_orientation = Quaternionr(0.5, -0.5, 0.5, -0.5)
         self.ned2enu_axis_orientation = Quaternionr(0, -math.sqrt(2)/2, -math.sqrt(2)/2, 0)
+
+        rospy.set_param('/airsim_node/depth_range_meter', self.depth_range_meter)
 
         while not rospy.has_param(f'/airsim_node/uav{uav_index}/init_x') or \
             not rospy.has_param(f'/airsim_node/uav{uav_index}/init_y') or \
@@ -70,10 +73,10 @@ class UavController:
         data.position.x -= self.init_trans.x_val
         data.position.y -= self.init_trans.y_val
         data.position.z -= self.init_trans.z_val
-        if self.index == 1:
-            print(f'[{self.vehicle_name}] pos_real: {self.vehicle_pose.position.x_val: .3f}, \
-                {self.vehicle_pose.position.y_val: .3f}, {self.vehicle_pose.position.z_val: .3f}')
-            print(f'[{self.vehicle_name}] pos_cmd: {data.position.x: .3f}, {data.position.y: .3f}, {data.position.z: .3f}')
+        # if self.index == 1:
+        #     print(f'[{self.vehicle_name}] pos_real: {self.vehicle_pose.position.x_val: .3f}, \
+        #         {self.vehicle_pose.position.y_val: .3f}, {self.vehicle_pose.position.z_val: .3f}')
+        #     print(f'[{self.vehicle_name}] pos_cmd: {data.position.x: .3f}, {data.position.y: .3f}, {data.position.z: .3f}')
         self.airsim_client.moveToPositionAsync(
             x = data.position.y,
             y = data.position.x,
@@ -95,8 +98,8 @@ class UavController:
             z_val = data.position.z
         ) - self.init_trans
         if current_point.distance_to(self.prev_point) >= 0.1:
-            self.log(self.vehicle_pose)
-            self.log(f'{self.prev_point} -> {current_point}')
+            # self.log(self.vehicle_pose)
+            # self.log(f'{self.prev_point} -> {current_point}')
             self.controll_by_position(data)
             self.prev_point = current_point
         
