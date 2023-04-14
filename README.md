@@ -1,30 +1,44 @@
 # 多无人机协同的高效三维重建系统（仿真系统）
 > Developer:
 > Chen Xiangyi(chen-xy19@mails.tsinghua.edu.cn), Yang Ding, Wang Jue    
-> *Update Time：2023-03-22*
+> *Update Time：2023-04-14*
 ---
 
 ## 系统架构
 ![系统整体架构](resource/structure1.png)
 ## 环境准备
-1. 配置Airsim。按照[AirSim ROS Package说明文档](https://microsoft.github.io/AirSim/airsim_ros_pkgs/)进行配置。
-2. 启动AirSim环境。AirSim是内嵌于UE环境的飞行器环境仿真插件。可以采用[二进制预编译包](https://microsoft.github.io/AirSim/use_precompiled/)来启动该环境，以地图`Block`为例。
+1. 配置Airsim ROS Package。按照[AirSim ROS Package说明文档](https://microsoft.github.io/AirSim/airsim_ros_pkgs/)进行配置，为了保证后续步骤正常进行，请确保在`~\.bashrc`中含有对Airsim ROS Package所处环境的source步骤。
+2. 安装foxglove-bridge
 ```
-cd $PATH_TO_BIN$
-bash Blocks.sh
+sudo apt install ros-$ROS_DISTRO-foxglove-bridge
 ```
-3. 克隆uav-nerf-sim并编译
+$ROS_DISTRO是您使用的ROS Version。  
+
+  3. 克隆uav-nerf-sim并编译
 ```
 git clone https://github.com/ClearmanChen/uav-nerf-sim.git
 cd uav-nerf-sim
 catkin_make
 ```
-4. 启动ROS软件包。
-ROS软件包包括 Airsim ROS Wrapper, Uav Controller, RACER等。
+
+
+## 快速入门
+1. 启动Unreal Engine with AirSim。AirSim是内嵌于UE环境的飞行器环境仿真插件。可以采用[二进制预编译包](https://microsoft.github.io/AirSim/use_precompiled/)来启动该环境。注意，Airsim配置文件需要指定为`settings\settings.json`。以地图`Block`为例。
+```
+cd $PATH_TO_BIN$
+bash Blocks.sh
+```
+
+2. 使用roslaunch快速启动ROS软件包,通常包括 Airsim ROS Wrapper, Uav Controller, RACER等。
+```
+cd $PATH_TO_UAV_NERF_SIM$\launch
+roslaunch start_simulation.launch
+```
 
 - **ROS Wrapper** 可以将UE环境中无人机的各种参数、状态信息收集并封装为ROS话题，在ROS系统中发布，起到了信息映射作用。
 - **Uav Controller** 移动节点的控制包。负责接受外部指令并调用接口控制无人机行动。
 
+3. 启动Foxglove可视化工具，配置文件指定为`settings\foxglove_default.json`。
 ## ROS API/Parameter 说明
 以ROS节点为单位介绍核心的参数和话题接口。
 
